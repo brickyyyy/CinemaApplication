@@ -13,26 +13,19 @@ namespace CinemaApplication.Models
         public double PercentageOccupied { get; set; }
         public int CurrentIncome { get; set; }
         public int PotentialIncome { get; set; }
+        public int NumberOfSoldTickets { get; set; }
         public CinemaRoom(int rows, int seatsPerRow)
         {
             RoomDimentions = new SizeOfRoom(rows, seatsPerRow);
             NumberOfSeats = rows * seatsPerRow;
             Seats = new List<Seat>();
-            PercentageOccupied = CalculateOccupiedPercent(); 
-            CurrentIncome = CalculateIncome();
             PotentialIncome = CalculatePotentialIncome();
         }
 
-        private double CalculateOccupiedPercent()
+        public double CalculateOccupiedPercent()
         {
-            var OccupiedSeats = Seats.Where(s => s.IsOccupied == true).ToList();
-            return (OccupiedSeats.Count / NumberOfSeats) * 100;
-        }
-
-        private int CalculateIncome()
-        {
-            var OccupiedSeats = Seats.Where(s => s.IsOccupied == true).ToList();
-            return OccupiedSeats.Sum(x => x.TicketPrice);
+            var OccupiedSeats = Seats.Where(s => s.IsOccupied == true).ToList().Count;
+            return OccupiedSeats *100/ NumberOfSeats;
         }
         private int CalculatePotentialIncome()
         {

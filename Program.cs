@@ -20,8 +20,18 @@ namespace CinemaApplication
             {
                 ShowInputOptions();
                 string output = Console.ReadLine();
-                //TODO: finish selection
-                //https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-console?view=vs-2019
+                try
+                {
+                    controller.ChooseAction(output);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Something went wrong - here are the details: " + ex.Message);
+                }
+                Console.WriteLine("------------------------\n");
+                Console.Write("Press 'n' and Enter to close the app, or press any other key and Enter to continue: ");
+                if (Console.ReadLine() == "n") endApp = true;
+                Console.WriteLine("\n"); // Friendly linespacing.
             }
         }
         public static void ShowInputOptions()
