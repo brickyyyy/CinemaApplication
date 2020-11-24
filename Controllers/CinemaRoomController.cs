@@ -14,19 +14,20 @@ namespace CinemaApplication.Controllers
             cinemaRoom = CreateCinemaRoom(rows, seatsPerRow);
             GenerateEmptySeats();
         }
-
+        public CinemaRoomController()
+        {
+                
+        }
         private CinemaRoom CreateCinemaRoom(int rows, int seatsPerRow)
         {
-            try
-            {
-                if (rows > 0 || seatsPerRow > 0)
-                    return new CinemaRoom(rows, seatsPerRow);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Rows and seats must be positive integers: " + ex.Message);
-                return ex;
-            }
+            //if (rows > 0 || seatsPerRow > 0) -->checked in startup class
+            return new CinemaRoom(rows, seatsPerRow);
+        }
+        public List<int> StartUpCinemaRoom()
+        {
+            Console.WriteLine("To create a Cinema room, enter number of Rows and Seats.");
+            Console.WriteLine("Please enter numbers, comma-separated: ");
+            return Console.ReadLine().Split(',').Select(x => int.Parse(x.Trim())).ToList();
         }
         private void GenerateEmptySeats()
         {

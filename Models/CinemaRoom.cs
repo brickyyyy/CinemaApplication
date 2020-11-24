@@ -37,11 +37,6 @@ namespace CinemaApplication.Models
             {
                 return (int)((Utilities.RoundDown(NumberOfSeats / 2) * 12) + (Utilities.RoundUp(NumberOfSeats / 2) * 10));
             }
-            else if(NumberOfSeats==0)
-            {
-                //TODO: catch exception
-                throw new IndexOutOfRangeException();
-            }
             else
             {
                 return (NumberOfSeats * 10);
